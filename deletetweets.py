@@ -20,7 +20,7 @@ class TweetDestroyer(object):
 
     def destroy(self, id_str, created_at, full_text):
         try:
-            print("delete tweet %s (%s: '%s')" % (id_str, created_at, full_text))
+            print("delete tweet %s (%s: '%s')" % (id_str, created_at, full_text.encode('ascii', 'xmlcharrefreplace').decode('ascii')))
             self.twitter_api.DestroyStatus(id_str)
             # NOTE: A poor man's solution to honor Twitter's rate limits.
             time.sleep(0.5)
